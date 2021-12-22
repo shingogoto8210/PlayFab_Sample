@@ -1,7 +1,0 @@
-{
-    "default": {
-        "buildFlags": "csharponly requiresoptionalvaluesupport",
-        "templateFolder": "csharp",
-        "versionKey": "csharp"
-    }
-}

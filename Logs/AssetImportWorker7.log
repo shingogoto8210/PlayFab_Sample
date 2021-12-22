@@ -149,3 +149,50 @@ Received Import Request.
 Start importing Assets/CSharpSDK-versioned/CSharpSDK-versioned/PlayFabSDK/source/PlayFabUtil.cs using Guid(ba89271edc29bb248bca3c5094d16931) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88ebd1b543aa41a60cb27d8217b3310c') in 0.020786 seconds 
   Import took 0.032263 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 4778.575480 seconds.
+  path: Assets/source/PlayFabUtil.cs
+  artifactKey: Guid(8816e12dab2b55c498081d4c0c6a8a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/source/PlayFabUtil.cs using Guid(8816e12dab2b55c498081d4c0c6a8a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '459a2063c1e84befa397407c2d355f9e') in 0.371991 seconds 
+  Import took 1.014533 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 35.698743 seconds.
+  path: Assets/source/PlayFabUtil.cs
+  artifactKey: Guid(8816e12dab2b55c498081d4c0c6a8a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/source/PlayFabUtil.cs using Guid(8816e12dab2b55c498081d4c0c6a8a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf755e08678f5e186ab9fd31f329dcc9') in 0.328064 seconds 
+  Import took 0.641780 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.075463 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.70 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in 11.558 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.72 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1855 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 85.6 MB.
+System memory in use after: 85.7 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 2296.
+Total: 31.068500 ms (FindLiveObjects: 1.405300 ms CreateObjectMapping: 0.439000 ms MarkObjects: 27.592700 ms  DeleteObjects: 1.625500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
