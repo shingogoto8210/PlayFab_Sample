@@ -1,0 +1,14 @@
+**/*[Tt]estTitleData.json*
+
+# Intermediate files
+.vs/
+bin/
+obj/
+
+# Deleted test projects
+PlayFabClientSDK/
+PlayFabServerSDK/
+
+*.suo
+*.user
+*.nupkg
