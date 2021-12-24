@@ -79,7 +79,7 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
         //var‚ÌŒ^‚ÍLoginResultŒ^iPlayFab@SDK‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éƒNƒ‰ƒXj
         var loginResult = string.IsNullOrEmpty(userId)
             ? await CreateNewUserAsync()
-            : new LoginResult(); // <= Ÿ‚Ìè‡‚ÅÀ‘•
+            : await LoadUserAsync(userId);
 
         //TODO@ƒf[ƒ^‚ğ©“®‚Åæ“¾‚·‚éİ’è‚É‚µ‚Ä‚¢‚é‚Ì‚Å,æ“¾‚µ‚½ƒf[ƒ^‚ğƒ[ƒJƒ‹‚ÉƒLƒƒƒbƒVƒ…‚·‚é
 
@@ -124,6 +124,45 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
 
             return response.Result;
         }
+
+        
+    }
+
+    /// <summary>
+    /// ƒƒOƒCƒ“‚µ‚Ä‚¢‚éƒ†[ƒU[ƒf[ƒ^‚ğƒ[ƒh
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    private static async UniTask<LoginResult> LoadUserAsync(string userId)
+    {
+        Debug.Log("ƒ†[ƒU[ƒf[ƒ^‚ ‚èCƒƒOƒCƒ“ŠJn");
+
+        //ƒƒOƒCƒ“ƒŠƒNƒGƒXƒg‚Ìì¬
+        var request = new LoginWithCustomIDRequest
+        {
+            CustomId = userId,
+            CreateAccount = false   //ƒAƒJƒEƒ“ƒg‚Ìã‘‚«‚Ís‚í‚È‚¢‚æ‚¤‚É‚·‚é
+        };
+
+        //PlayFab‚ÉƒƒOƒCƒ“
+        var response = await PlayFabClientAPI.LoginWithCustomIDAsync(request);
+
+        //ƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO
+        if(response.Error != null)
+        {
+            Debug.Log("Error");
+
+            //TODO response.Error‚É‚ÍƒGƒ‰[‚Ìí—Ş‚ª’l‚Æ‚µ‚Ä“ü‚Á‚Ä‚¢‚é
+            //‚»‚ÌƒGƒ‰[‚É‘Î‰‚µ‚½ˆ—‚ğswitch•¶‚È‚Ç‚Å‹Lq‚µ‚Ä•¡”‚ÌƒGƒ‰[‚É‘Î‰‚Å‚«‚é‚æ‚¤‚É‚·‚é
+
+        }
+
+        //ƒGƒ‰[‚Ì“à—e‚ğŒ©‚Äƒnƒ“ƒhƒŠƒ“ƒO‚ğs‚¢CƒƒOƒCƒ“‚É¬Œ÷‚µ‚Ä‚¢‚é‚©‚ğ”»’è
+        var message = response.Error is null ? $"Login success! My PlayFabID is {response.Result.PlayFabId}" : response.Error.GenerateErrorReport();
+
+        Debug.Log(message);
+
+        return response.Result;
     }
 
 }
