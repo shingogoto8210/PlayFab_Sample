@@ -13,7 +13,7 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
     static LoginManager()
     {
         //TitleIDİ’è
-        PlayFabSettings.staticSettings.TitleId = "PlayFab‚Åì¬‚µ‚½ƒ^ƒCƒgƒ‹‚ÌID‚ğ‘‚­B‰p”š5•¶š‚Ì‚à‚Ì";
+        PlayFabSettings.staticSettings.TitleId = "DC018";
 
         Debug.Log("TitleIDİ’èF" + PlayFabSettings.staticSettings.TitleId);
 
@@ -34,27 +34,96 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
         Debug.Log("‰Šú‰»Š®—¹");
     }
 
+    /// <summary>
+    /// PlayerFab‚Ö‚ÌƒƒOƒCƒ“€”õ‚ÆƒƒOƒCƒ“
+    /// </summary>
+    /// <returns></returns>
     public static async UniTask PrepareLoginPlayFab()
     {
         Debug.Log("ƒƒOƒCƒ“@€”õ@ŠJn");
 
+        await LoginAndUpdateLocalCacheAsync();
+
         //‰¼‚ÌƒƒOƒCƒ“‚Ìî•ñ(ƒŠƒNƒGƒXƒgj‚ğì¬‚µ‚Äİ’è
-        var request = new LoginWithCustomIDRequest
-        {
-            CustomId = "GettingStartedGuide",       //‚±‚Ì•”•ª‚ªƒ†[ƒU[‚ÌID‚É‚È‚è‚Ü‚·
-            CreateAccount = true@@@@@@@@@@//ƒAƒJƒEƒ“ƒg‚ªì¬‚³‚ê‚Ä‚¢‚È‚¢ê‡Atrue‚Ìê‡‚Í“½–¼ƒƒOƒCƒ“‚µ‚ÄƒAƒJƒEƒ“ƒg‚ğì¬‚·‚é
-        };
+        //var request = new LoginWithCustomIDRequest
+        //{
+        //    CustomId = "GettingStartedGuide",       //‚±‚Ì•”•ª‚ªƒ†[ƒU[‚ÌID‚É‚È‚è‚Ü‚·
+        //    CreateAccount = true@@@@@@@@@@//ƒAƒJƒEƒ“ƒg‚ªì¬‚³‚ê‚Ä‚¢‚È‚¢ê‡Atrue‚Ìê‡‚Í“½–¼ƒƒOƒCƒ“‚µ‚ÄƒAƒJƒEƒ“ƒg‚ğì¬‚·‚é
+        //};
 
-        //PlayFab‚Ö‚ÌƒƒOƒCƒ“Bî•ñ‚ªŠm”F‚Å‚«‚é‚Ü‚Å‘Ò‹@
-        var result = await PlayFabClientAPI.LoginWithCustomIDAsync(request);
+        ////PlayFab‚Ö‚ÌƒƒOƒCƒ“Bî•ñ‚ªŠm”F‚Å‚«‚é‚Ü‚Å‘Ò‹@
+        //var result = await PlayFabClientAPI.LoginWithCustomIDAsync(request);
 
-        //ƒGƒ‰[‚Ì“à—e‚ğŒ©‚ÄAƒƒOƒCƒ“‚É¬Œ÷‚µ‚Ä‚¢‚é‚©‚ğ”»’è(ƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒOj
-        var message = result.Error is null
-            ? $"ƒƒOƒCƒ“¬Œ÷I My PlayFabID is { result.Result.PlayFabId}"
-            : result.Error.GenerateErrorReport();
+        ////ƒGƒ‰[‚Ì“à—e‚ğŒ©‚ÄAƒƒOƒCƒ“‚É¬Œ÷‚µ‚Ä‚¢‚é‚©‚ğ”»’è(ƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒOj
+        //var message = result.Error is null
+        //    ? $"ƒƒOƒCƒ“¬Œ÷I My PlayFabID is { result.Result.PlayFabId}"
+        //    : result.Error.GenerateErrorReport();
 
-        Debug.Log(message);
+        //Debug.Log(message);
             
+    }
+
+    /// <summary>
+    /// ƒ†[ƒU[ƒf[ƒ^‚Æƒ^ƒCƒgƒ‹ƒf[ƒ^‚ğ‰Šú‰»
+    /// </summary>
+    /// <returns></returns>
+    public static async UniTask LoginAndUpdateLocalCacheAsync()
+    {
+        Debug.Log("‰Šú‰»ŠJn");
+
+        //ƒ†[ƒU[ID‚Ìæ“¾‚ğ‚İ‚é
+        var userId = PlayerPrefsManager.UserId; //var‚ÌŒ^‚ÍstringŒ^
+
+        //ƒ†[ƒU[ID‚ªæ“¾‚Å‚«‚È‚¢ê‡‚É‚ÍV‹Kì¬‚µ‚Ä“½–¼ƒƒOƒCƒ“‚·‚é
+        //æ“¾o—ˆ‚½ê‡‚É‚ÍCƒ†[ƒU[ID‚ğg‚Á‚ÄƒƒOƒCƒ“‚·‚éiŸ‰ñ‚Ìè‡‚ÅÀ‘•j
+        //var‚ÌŒ^‚ÍLoginResultŒ^iPlayFab@SDK‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éƒNƒ‰ƒXj
+        var loginResult = string.IsNullOrEmpty(userId)
+            ? await CreateNewUserAsync()
+            : new LoginResult(); // <= Ÿ‚Ìè‡‚ÅÀ‘•
+
+        //TODO@ƒf[ƒ^‚ğ©“®‚Åæ“¾‚·‚éİ’è‚É‚µ‚Ä‚¢‚é‚Ì‚Å,æ“¾‚µ‚½ƒf[ƒ^‚ğƒ[ƒJƒ‹‚ÉƒLƒƒƒbƒVƒ…‚·‚é
+
+    }
+
+    /// <summary>
+    /// V‹Kƒ†[ƒU[‚ğì¬‚µ‚ÄUserId‚ğPlayerPrefs‚É•Û‘¶
+    /// </summary>
+    /// <returns></returns>
+    private static async UniTask<LoginResult> CreateNewUserAsync()
+    {
+        Debug.Log("ƒ†[ƒU[ƒf[ƒ^‚È‚µBV‹Kƒ†[ƒU[ì¬");
+
+        while (true)
+        {
+            var newUserId = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 20);
+
+            //UserId‚ÌÌ”Ô
+            var request = new LoginWithCustomIDRequest
+            {
+                CustomId = newUserId,
+                CreateAccount = true,
+            };
+
+            //PlayFab‚ÉƒƒOƒCƒ“
+            var response = await PlayFabClientAPI.LoginWithCustomIDAsync(request);
+
+            //ƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO
+            if(response.Error != null)
+            {
+                Debug.Log("Error");
+            }
+
+            //‚à‚µ‚àLastLoginTime‚É’l‚ª“ü‚Á‚Ä‚¢‚éê‡‚É‚ÍCÌ”Ô‚µ‚½ID‚ªŠù‘¶ƒ†[ƒU[‚Æd•¡‚µ‚Ä‚¢‚é‚Ì‚ÅƒŠƒgƒ‰ƒC‚·‚é
+            if (response.Result.LastLoginTime.HasValue)
+            {
+                continue;
+            }
+
+            //PlayerPrefs‚ÉUserId‚ğ‹L˜^‚·‚é
+            PlayerPrefsManager.UserId = newUserId;
+
+            return response.Result;
+        }
     }
 
 }
