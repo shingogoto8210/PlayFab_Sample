@@ -9,17 +9,17 @@ C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker5
 -projectPath
 C:/Users/Owner/PlayFab_Sample
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker5.log
 -srvPort
-57276
+50076
 Successfully changed project path to: C:/Users/Owner/PlayFab_Sample
 C:/Users/Owner/PlayFab_Sample
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 303.83 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 207.18 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.12f1 (b3b2c6512326)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Resources/UnitySubsystems
@@ -35,37 +35,37 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56412
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56320
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.008582 seconds.
+Registered in 0.011028 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 105.91 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 122.79 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in 16.586 seconds
+- Completed reload, in 11.711 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.037260 seconds.
+Registered in 0.038318 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.16 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 10.14 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.309 seconds
+- Completed reload, in  6.286 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.14 seconds
-Refreshing native plugins compatible for Editor in 0.84 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.26 seconds
+Refreshing native plugins compatible for Editor in 0.90 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1861 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 86.0 MB.
 System memory in use after: 86.0 MB.
 
 Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 2295.
-Total: 11.810000 ms (FindLiveObjects: 0.386100 ms CreateObjectMapping: 0.156500 ms MarkObjects: 9.939000 ms  DeleteObjects: 1.324900 ms)
+Total: 21.412500 ms (FindLiveObjects: 1.677900 ms CreateObjectMapping: 0.243500 ms MarkObjects: 16.272600 ms  DeleteObjects: 3.208500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -80,40 +80,16 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
+  path: Assets/Scripts/LoginManager.cs
+  artifactKey: Guid(98cf1fbd17e08854f86b05c62ba1f108) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/LoginManager.cs using Guid(98cf1fbd17e08854f86b05c62ba1f108) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efa1de89e2543bcbb81274c10bb1e60a') in 0.458417 seconds 
+  Import took 0.477626 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008868 seconds.
   path: Assets/Prefabs/lbl.prefab
   artifactKey: Guid(d65f8e08230265a43a7bc0c2d3b5381b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/lbl.prefab using Guid(d65f8e08230265a43a7bc0c2d3b5381b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3845867dac24cff5480d07e57ebaf6a2') in 0.169611 seconds 
-  Import took 0.179761 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 808.170722 seconds.
-  path: Assets/Prefabs/btnSubmit.prefab
-  artifactKey: Guid(ae9e5704d4fa454489bede8feccc8d36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/btnSubmit.prefab using Guid(ae9e5704d4fa454489bede8feccc8d36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b94f7aff9eb0fe12fd24f4fb1b4f7a1') in 0.227369 seconds 
-  Import took 0.501198 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.773505 seconds.
-  path: Assets/Prefabs/btn.prefab
-  artifactKey: Guid(ae9e5704d4fa454489bede8feccc8d36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/btn.prefab using Guid(ae9e5704d4fa454489bede8feccc8d36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '642c046c03348fae0225a707fa34e903') in 0.048760 seconds 
-  Import took 0.065783 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.034992 seconds.
-  path: Assets/Prefabs/btn.prefab
-  artifactKey: Guid(ae9e5704d4fa454489bede8feccc8d36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/btn.prefab using Guid(ae9e5704d4fa454489bede8feccc8d36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '642c046c03348fae0225a707fa34e903') in 0.042559 seconds 
-  Import took 0.066466 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 475.680714 seconds.
-  path: Assets/Prefabs/lbl.prefab
-  artifactKey: Guid(d65f8e08230265a43a7bc0c2d3b5381b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/lbl.prefab using Guid(d65f8e08230265a43a7bc0c2d3b5381b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a5352459083e55fe3d21d5706f3cecb') in 0.037920 seconds 
-  Import took 0.082823 seconds .
+Start importing Assets/Prefabs/lbl.prefab using Guid(d65f8e08230265a43a7bc0c2d3b5381b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3584ef00a751e9881b176efb2b0103d1') in 0.293789 seconds 
+  Import took 0.312433 seconds .
 
