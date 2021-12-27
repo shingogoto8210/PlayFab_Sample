@@ -2010,6 +2010,7 @@ GameObject:
   - component: {fileID: 1820688124}
   - component: {fileID: 1820688123}
   - component: {fileID: 1820688122}
+  - component: {fileID: 1820688126}
   m_Layer: 5
   m_Name: AccountCanvas
   m_TagString: Untagged
@@ -2099,6 +2100,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1820688126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820688121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e62061e05a8fc4daf84b226050ed67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btnSubmit: {fileID: 1109745407}
+  btnCancel: {fileID: 371876139}
+  emailInput: {fileID: 1965842004}
+  passwordInput: {fileID: 41439934}
+  txtEmail: {fileID: 1722131903}
+  txtPassword: {fileID: 1317566961}
+  responsePopUp: {fileID: 2048836127}
+  btnClosePopUp: {fileID: 2043766932}
+  btnEmailLogin: {fileID: 478824861}
+  txtResponseInfo: {fileID: 2055684628}
 --- !u!1 &1936098059
 GameObject:
   m_ObjectHideFlags: 0
@@ -2741,6 +2764,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3446765966365658293, guid: d65f8e08230265a43a7bc0c2d3b5381b, type: 3}
   m_PrefabInstance: {fileID: 2055684626}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2055684628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3446765966365658291, guid: d65f8e08230265a43a7bc0c2d3b5381b, type: 3}
+  m_PrefabInstance: {fileID: 2055684626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3446765965938752783
 PrefabInstance:
   m_ObjectHideFlags: 0
