@@ -7,6 +7,18 @@ using Cysharp.Threading.Tasks;
 
 public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯¶¬‚³‚ê‚é
 {
+
+    public static GetPlayerCombinedInfoRequestParams CombinedInfoRequestParams { get; }
+    = new GetPlayerCombinedInfoRequestParams
+    {
+        GetUserAccountInfo = true,
+        GetPlayerProfile = true,
+        GetTitleData = true,
+        GetUserData = true,
+        GetUserInventory = true,
+        GetUserVirtualCurrency = true,
+        GetPlayerStatistics = true
+    };
     /// <summary>
     /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
     /// </summary>
@@ -102,6 +114,7 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
             {
                 CustomId = newUserId,
                 CreateAccount = true,
+                InfoRequestParameters = CombinedInfoRequestParams
             };
 
             //PlayFab‚ÉƒƒOƒCƒ“
@@ -141,7 +154,8 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
         var request = new LoginWithCustomIDRequest
         {
             CustomId = userId,
-            CreateAccount = false   //ƒAƒJƒEƒ“ƒg‚Ìã‘‚«‚Ís‚í‚È‚¢‚æ‚¤‚É‚·‚é
+            CreateAccount = false,   //ƒAƒJƒEƒ“ƒg‚Ìã‘‚«‚Ís‚í‚È‚¢‚æ‚¤‚É‚·‚é
+            InfoRequestParameters = CombinedInfoRequestParams //ƒvƒƒpƒeƒBî•ñ‚ğİ’è
         };
 
         //PlayFab‚ÉƒƒOƒCƒ“
@@ -163,6 +177,55 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
         Debug.Log(message);
 
         return response.Result;
+    }
+
+    /// <summary>
+    /// Email‚ÆƒpƒXƒ[ƒh‚ÅƒƒOƒCƒ“(ƒAƒJƒEƒ“ƒg‰ñ•œ—pj
+    /// </summary>
+    /// <param name="email"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    public static async UniTask<(bool, string)> LoginEmailAndPasswordAsync(string email,string password)
+    {
+        //Email‚É‚æ‚éƒƒOƒCƒ“ƒŠƒNƒGƒXƒg‚Ìì¬
+        var request = new LoginWithEmailAddressRequest
+        {
+            Email = email,
+            Password = password,
+            InfoRequestParameters = CombinedInfoRequestParams
+        };
+
+        //PlayFab‚ÉƒƒOƒCƒ“
+        var response = await PlayFabClientAPI.LoginWithEmailAddressAsync(request);
+
+        //ƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO
+        if(response.Error != null)
+        {
+            switch (response.Error.Error)
+            {
+                case PlayFabErrorCode.InvalidParams:
+                case PlayFabErrorCode.InvalidEmailOrPassword:
+                case PlayFabErrorCode.AccountNotFound:
+                    Debug.Log("ƒ[ƒ‹ƒAƒhƒŒƒX‚©ƒpƒXƒ[ƒh‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ");
+                    break;
+                default:
+                    Debug.Log(response.Error.GenerateErrorReport());
+                    break;
+            }
+            return (false, "ƒ[ƒ‹ƒAƒhƒŒƒX‚©ƒpƒXƒ[ƒh‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ");
+        }
+
+        //PlayPrefs‚ğ‰Šú‰»‚µ‚ÄAƒƒOƒCƒ“Œ‹‰Ê‚ÌUserId‚ğ“o˜^‚µ‚È‚¨‚·
+        PlayerPrefs.DeleteAll();
+
+        //V‚µ‚­PlayFab‚©‚çUserId‚ğæ“¾
+        //InfoResultPayload‚ÍƒNƒ‰ƒCƒAƒ“ƒgƒvƒƒtƒB[ƒ‹ƒIƒvƒVƒ‡ƒ“iInfoRequestParametersj‚Å‹–‰Â‚³‚ê‚Ä‚È‚¢‚Ænull‚É‚È‚é
+        PlayerPrefsManager.UserId = response.Result.InfoResultPayload.AccountInfo.CustomIdInfo.CustomId;
+
+        //Email‚ÅƒƒOƒCƒ“‚µ‚½‚±‚Æ‚ğ‹L˜^‚·‚é
+        PlayerPrefsManager.IsLoginEmailAdress = true;
+
+        return (true, "Email‚É‚æ‚éƒƒOƒCƒ“‚ªŠ®—¹‚µ‚Ü‚µ‚½");
     }
 
 }
