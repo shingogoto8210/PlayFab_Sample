@@ -17,4 +17,16 @@ public static class PlayerPrefsManager
         }
         get => PlayerPrefs.GetString("UserId");
     }
+
+    //メールアドレスを利用してログイン済みの場合はtrue
+    public static bool IsLoginEmailAdress
+    {
+        set
+        {
+            PlayerPrefs.SetString("IsLoginEmailAdress", value.ToString());
+            PlayerPrefs.Save();
+        }
+
+        get => bool.TryParse(PlayerPrefs.GetString("IsLoginEmailAdress"), out bool result) && result;
+    }
 }
