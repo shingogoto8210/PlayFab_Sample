@@ -3,6 +3,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯¶¬‚³‚ê‚é
@@ -92,6 +93,9 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
         var loginResult = string.IsNullOrEmpty(userId)
             ? await CreateNewUserAsync()
             : await LoadUserAsync(userId);
+
+        //ƒvƒŒƒCƒ„[ƒf[ƒ^‚Ìì¬‚ÆXV
+        await CreateUserDataAsync();
 
         //ƒf[ƒ^‚ğ©“®‚Åæ“¾‚·‚éİ’è‚É‚µ‚Ä‚¢‚é‚Ì‚Å,æ“¾‚µ‚½ƒf[ƒ^‚ğƒ[ƒJƒ‹‚ÉƒLƒƒƒbƒVƒ…‚·‚é
         UpdateLocalCacheAsync(loginResult);
@@ -258,4 +262,15 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
         Debug.Log("Šeíƒf[ƒ^‚ÌƒLƒƒƒbƒVƒ…Š®—¹");
     }
 
+    private static async UniTask CreateUserDataAsync()
+    {
+        var createData = new Dictionary<string, string>
+        {
+            {"Level","0" }
+        };
+
+        await UserDataManager.UpdatePlayerDataAsync(createData);
+
+        Debug.Log("ƒ†[ƒU[ƒf[ƒ^@“o˜^Š®—¹");
+    }
 }
