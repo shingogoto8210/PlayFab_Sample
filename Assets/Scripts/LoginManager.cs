@@ -93,7 +93,8 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
             ? await CreateNewUserAsync()
             : await LoadUserAsync(userId);
 
-        //TODO@ƒf[ƒ^‚ğ©“®‚Åæ“¾‚·‚éİ’è‚É‚µ‚Ä‚¢‚é‚Ì‚Å,æ“¾‚µ‚½ƒf[ƒ^‚ğƒ[ƒJƒ‹‚ÉƒLƒƒƒbƒVƒ…‚·‚é
+        //ƒf[ƒ^‚ğ©“®‚Åæ“¾‚·‚éİ’è‚É‚µ‚Ä‚¢‚é‚Ì‚Å,æ“¾‚µ‚½ƒf[ƒ^‚ğƒ[ƒJƒ‹‚ÉƒLƒƒƒbƒVƒ…‚·‚é
+        UpdateLocalCacheAsync(loginResult);
 
     }
 
@@ -157,6 +158,7 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
             CreateAccount = false,   //ƒAƒJƒEƒ“ƒg‚Ìã‘‚«‚Ís‚í‚È‚¢‚æ‚¤‚É‚·‚é
             InfoRequestParameters = CombinedInfoRequestParams //ƒvƒƒpƒeƒBî•ñ‚ğİ’è
         };
+
 
         //PlayFab‚ÉƒƒOƒCƒ“
         var response = await PlayFabClientAPI.LoginWithCustomIDAsync(request);
@@ -222,10 +224,38 @@ public static class LoginManager  //ƒQ[ƒ€Às‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚ª©“®“I‚É1‚Â‚¾‚¯
         //InfoResultPayload‚ÍƒNƒ‰ƒCƒAƒ“ƒgƒvƒƒtƒB[ƒ‹ƒIƒvƒVƒ‡ƒ“iInfoRequestParametersj‚Å‹–‰Â‚³‚ê‚Ä‚È‚¢‚Ænull‚É‚È‚é
         PlayerPrefsManager.UserId = response.Result.InfoResultPayload.AccountInfo.CustomIdInfo.CustomId;
 
+
         //Email‚ÅƒƒOƒCƒ“‚µ‚½‚±‚Æ‚ğ‹L˜^‚·‚é
         PlayerPrefsManager.IsLoginEmailAdress = true;
 
         return (true, "Email‚É‚æ‚éƒƒOƒCƒ“‚ªŠ®—¹‚µ‚Ü‚µ‚½");
+    }
+
+    /// <summary>
+    /// PlayFab ‚©‚çæ“¾‚µ‚½ƒf[ƒ^ŒQ‚ğƒ[ƒJƒ‹(’[––)‚ÉƒLƒƒƒbƒVƒ…
+    /// </summary>
+    /// <param name="loginResult"></param>
+    /// <returns></returns>
+
+    public static void UpdateLocalCacheAsync(LoginResult loginResult)  //  <=@Œã’öAasync ‚ğ’Ç‰Á‚µA–ß‚è’l‚ğ UniTask ‚É•ÏX‚µ‚Ü‚·B
+    {   
+
+        // TODO ƒJƒ^ƒƒO—Ş‚Ì‰Šú‰»B‘¼‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‰Šú‰»‚É‚à•K—v‚È‚Ì‚ÅÅ‰‚És‚¤
+
+
+        // TODO ƒ^ƒCƒgƒ‹ƒf[ƒ^‚Ìæ“¾
+
+
+        // TODO ƒ†[ƒU[ƒf[ƒ^‚Ìæ“¾
+
+        // ƒ†[ƒU[–¼‚È‚Ç‚Ìæ“¾
+        PlayerPlofileManager.SyncPlayFabToClient(loginResult.InfoResultPayload.PlayerProfile, loginResult.InfoResultPayload.PlayerStatistics);
+
+
+        // TODO ‘¼‚Ì‰Šú‰»ˆ—‚ğ’Ç‰Á
+
+
+        Debug.Log("Šeíƒf[ƒ^‚ÌƒLƒƒƒbƒVƒ…Š®—¹");
     }
 
 }
